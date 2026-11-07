@@ -1,0 +1,81 @@
+{
+  // FaceIT Scoreboard Configuration (SwiftlyS2 - CS2)
+  // Plugin: zFaceItScoreboard7GC
+  "FaceIT": {
+    // -------------------------------------------------------------
+    // API Authentication
+    // -------------------------------------------------------------
+    // Primary API Server Key for https://api.vhming.dev (Header: X-API-SERVERKEY)
+    "VhmingApiKey": "",
+
+    // Fallback Official FaceIT API Key from https://developers.faceit.com/ (Header: Authorization Bearer)
+    // Used if api.vhming.dev is unreachable or encounters an error
+    "FaceitApiKey": "",
+
+    // HTTP request timeout in seconds
+    "RequestTimeoutSeconds": 8,
+
+    // Maximum concurrent HTTP requests to prevent API congestion
+    "MaxConcurrentRequests": 4,
+
+    // -------------------------------------------------------------
+    // Scoreboard Item / Coin IDs
+    // -------------------------------------------------------------
+    // FaceIT collectible tokens for Levels 1 - 10
+    "LevelCoins": {
+      "1": 1061,
+      "2": 1032,
+      "3": 1041,
+      "4": 1074,
+      "5": 1067,
+      "6": 1088,
+      "7": 1039,
+      "8": 1055,
+      "9": 1087,
+      "10": 1017
+    },
+
+    // Coin ID displayed when player is FaceIT Challenger (challenger: true)
+    "ChallengerCoinId": 1089,
+
+    // Coin ID displayed when player is Banned on FaceIT (banned: true)
+    "BannedCoinId": 1018,
+
+    // Coin ID displayed when player does not have a FaceIT account / unranked
+    "NullCoinId": 5138,
+
+    // -------------------------------------------------------------
+    // Player Options & Commands
+    // -------------------------------------------------------------
+    // If false (default), FaceIT level display is permanently enabled and players CANNOT turn it off.
+    // If true, players can use !faceit / !fl to toggle their level display.
+    "EnableToggleCommand": false,
+
+    // -------------------------------------------------------------
+    // Fake FaceIT Override & Command
+    // -------------------------------------------------------------
+    // Permission required to use !fake-faceit command (leave empty to allow everyone or disable)
+    "FakeFaceitPermission": "admin.faceit.fake.scoreboard",
+
+    // Static fake FaceIT overrides mapped by SteamID64
+    // Values can be: "1" to "10", "challenger", "ban", "null"
+    "FakeFaceit": {
+      "76561198000000000": "10",
+      "76561198000000001": "challenger",
+      "76561198000000002": "ban"
+    },
+
+    // -------------------------------------------------------------
+    // Caching & Performance
+    // -------------------------------------------------------------
+    // Cache expiry time in hours (how long player stats remain cached before re-fetching)
+    "CacheExpiryHours": 24,
+
+    // Interval in seconds to auto-save dirty cache to local storage (0 = save on unload only)
+    "AutoSaveIntervalSeconds": 120,
+
+    // Safety verification check interval in seconds (verifies rank consistency)
+    "SafetyCheckIntervalSeconds": 3.0
+  }
+}
+

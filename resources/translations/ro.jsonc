@@ -1,0 +1,10 @@
+﻿{
+    "prefix": "[gold]FaceIT [silver]» ",
+    "level_enabled": "AfiÈ™are nivel [green]activatÄƒ",
+    "level_disabled": "AfiÈ™are nivel [red]dezactivatÄƒ",
+    "level_info": "Nivelul tÄƒu FaceIT: [lime]{0}",
+    "command_disabled": "[red]AceastÄƒ comandÄƒ este dezactivatÄƒ de server",
+    "fetching": "[grey]Se Ã®ncarcÄƒ nivelul tÄƒu FaceIT...",
+    "not_found": "[grey]Cont FaceIT negÄƒsit",
+    "error": "[red]Eroare la Ã®ncÄƒrcarea datelor FaceIT"
+}

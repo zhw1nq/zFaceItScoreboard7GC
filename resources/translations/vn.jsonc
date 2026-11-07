@@ -1,0 +1,18 @@
+{
+  "prefix": "[gold]FaceIT [silver]» ",
+  "level_enabled": "Hiển thị huy hiệu FaceIT [green]đã bật[default].",
+  "level_disabled": "Hiển thị huy hiệu FaceIT [red]đã tắt[default].",
+  "level_info": "Level FaceIT của bạn: [lime]{0}[default]",
+  "banned_info": "[red]Tài khoản FaceIT của bạn đang bị BANNED![default]",
+  "challenger_info": "Bạn đang đạt thứ hạng FaceIT [gold]Challenger[default]!",
+  "not_found": "[grey]Không tìm thấy tài khoản FaceIT của bạn.[default]",
+  "command_disabled": "[red]Lệnh này đã bị server tắt.[default]",
+  "fetching": "[grey]Đang tải dữ liệu FaceIT của bạn...[default]",
+  "error": "[red]Lỗi khi tải dữ liệu FaceIT.[default]",
+  "no_permission": "[red]Bạn không có quyền sử dụng lệnh này.[default]",
+  "player_not_found": "[red]Không tìm thấy người chơi '{0}'.[default]",
+  "fake_usage": "[grey]Cách dùng: !fake-faceit <người chơi|steamid> <1-10|challenger|ban|null|reset>[default]",
+  "fake_success": "Đã đặt Fake FaceIT cho [gold]{0}[default] thành [lime]{1}[default].",
+  "fake_reset": "Đã hủy Fake FaceIT cho [gold]{0}[default], khôi phục dữ liệu gốc.",
+  "fake_cleared_all": "Đã xóa toàn bộ Fake FaceIT tạm thời trên server."
+}

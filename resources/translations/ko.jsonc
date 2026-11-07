@@ -1,0 +1,10 @@
+﻿{
+    "prefix": "[gold]FaceIT [silver]» ",
+    "level_enabled": "ë ˆë²¨ í‘œì‹œ [green]í™œì„±í™”ë¨",
+    "level_disabled": "ë ˆë²¨ í‘œì‹œ [red]ë¹„í™œì„±í™”ë¨",
+    "level_info": "ë‹¹ì‹ ì˜ FaceIT ë ˆë²¨: [lime]{0}",
+    "command_disabled": "[red]ì´ ëª…ë ¹ì–´ëŠ” ì„œë²„ì—ì„œ ë¹„í™œì„±í™”ë˜ì—ˆìŠµë‹ˆë‹¤",
+    "fetching": "[grey]FaceIT ë ˆë²¨ì„ ë¶ˆëŸ¬ì˜¤ëŠ” ì¤‘...",
+    "not_found": "[grey]FaceIT ê³„ì •ì„ ì°¾ì„ ìˆ˜ ì—†ìŠµë‹ˆë‹¤",
+    "error": "[red]FaceIT ë°ì´í„° ë¡œë”© ì˜¤ë¥˜"
+}

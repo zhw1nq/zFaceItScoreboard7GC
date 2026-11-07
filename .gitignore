@@ -1,0 +1,33 @@
+## Build and output directories
+build/
+bin/
+obj/
+publish/
+*.zip
+
+## IDE and Editor files
+.vs/
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+## Runtime data and cache
+faceit_cache.json
+faceit_cache.json.tmp
+*.tmp
+*.cache
+*.log
+
+## Local draft & doc references
+draft/
+AI-READ-DOCS-HERE/
+
+## OS generated files
+.DS_Store
+Thumbs.db
+

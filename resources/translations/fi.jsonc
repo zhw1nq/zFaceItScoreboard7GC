@@ -1,0 +1,10 @@
+﻿{
+    "prefix": "[gold]FaceIT [silver]» ",
+    "level_enabled": "TasonÃ¤yttÃ¶ [green]kÃ¤ytÃ¶ssÃ¤",
+    "level_disabled": "TasonÃ¤yttÃ¶ [red]pois kÃ¤ytÃ¶stÃ¤",
+    "level_info": "FaceIT tasosi: [lime]{0}",
+    "command_disabled": "[red]TÃ¤mÃ¤ komento on poistettu kÃ¤ytÃ¶stÃ¤ palvelimella",
+    "fetching": "[grey]Haetaan FaceIT tasoasi...",
+    "not_found": "[grey]FaceIT tiliÃ¤ ei lÃ¶ytynyt",
+    "error": "[red]Virhe haettaessa FaceIT tietoja"
+}

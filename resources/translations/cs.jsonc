@@ -1,0 +1,10 @@
+﻿{
+    "prefix": "[gold]FaceIT [silver]» ",
+    "level_enabled": "ZobrazenÃ­ ÃºrovnÄ› [green]zapnuto",
+    "level_disabled": "ZobrazenÃ­ ÃºrovnÄ› [red]vypnuto",
+    "level_info": "VaÅ¡e FaceIT ÃºroveÅˆ: [lime]{0}",
+    "command_disabled": "[red]Tento pÅ™Ã­kaz byl serverem zakÃ¡zÃ¡n",
+    "fetching": "[grey]NaÄÃ­tÃ¡nÃ­ vaÅ¡Ã­ FaceIT ÃºrovnÄ›...",
+    "not_found": "[grey]FaceIT ÃºÄet nenalezen",
+    "error": "[red]Chyba pÅ™i naÄÃ­tÃ¡nÃ­ FaceIT dat"
+}

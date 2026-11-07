@@ -1,0 +1,18 @@
+{
+  "prefix": "[gold]FaceIT [silver]» ",
+  "level_enabled": "Level display [green]enabled[default].",
+  "level_disabled": "Level display [red]disabled[default].",
+  "level_info": "Your FaceIT level: [lime]{0}[default]",
+  "banned_info": "[red]Your FaceIT account is BANNED![default]",
+  "challenger_info": "You are a FaceIT [gold]Challenger[default]!",
+  "not_found": "[grey]FaceIT account not found.[default]",
+  "command_disabled": "[red]This command is disabled by the server.[default]",
+  "fetching": "[grey]Fetching your FaceIT data...[default]",
+  "error": "[red]Error fetching FaceIT data.[default]",
+  "no_permission": "[red]You do not have permission to use this command.[default]",
+  "player_not_found": "[red]Player '{0}' not found.[default]",
+  "fake_usage": "[grey]Usage: !fake-faceit <player|steamid> <1-10|challenger|ban|null|reset>[default]",
+  "fake_success": "Set Fake FaceIT for [gold]{0}[default] to [lime]{1}[default].",
+  "fake_reset": "Reset Fake FaceIT for [gold]{0}[default] to real API stats.",
+  "fake_cleared_all": "Cleared all temporary Fake FaceIT overrides on the server."
+}
