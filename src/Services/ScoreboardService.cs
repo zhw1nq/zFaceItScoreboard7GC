@@ -57,6 +57,52 @@ public sealed class ScoreboardService : IScoreboardService
         return null;
     }
 
+    public string GetFakeDisplayLabel(string fakeKey)
+    {
+        if (string.IsNullOrWhiteSpace(fakeKey))
+            return "Unknown";
+
+        var trimmed = fakeKey.Trim();
+        var config = _configMonitor.CurrentValue;
+
+        if (config.CustomTokens != null)
+        {
+            foreach (var kvp in config.CustomTokens)
+            {
+                if (string.Equals(kvp.Key, trimmed, StringComparison.OrdinalIgnoreCase) ||
+                    string.Equals(kvp.Value.Name, trimmed, StringComparison.OrdinalIgnoreCase))
+                {
+                    return !string.IsNullOrWhiteSpace(kvp.Value.Name) ? kvp.Value.Name : kvp.Key;
+                }
+            }
+        }
+
+        if (string.Equals(trimmed, "ban", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(trimmed, "banned", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Banned";
+        }
+
+        if (string.Equals(trimmed, "challenger", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Challenger";
+        }
+
+        if (string.Equals(trimmed, "null", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(trimmed, "unranked", StringComparison.OrdinalIgnoreCase) ||
+            string.Equals(trimmed, "none", StringComparison.OrdinalIgnoreCase))
+        {
+            return "Unranked";
+        }
+
+        if (int.TryParse(trimmed, out var lvl) && lvl >= 1 && lvl <= 10)
+        {
+            return $"Level {lvl}";
+        }
+
+        return trimmed;
+    }
+
     public int ResolveCoinId(PlayerFaceitRecord record)
     {
         var config = _configMonitor.CurrentValue;
@@ -79,6 +125,18 @@ public sealed class ScoreboardService : IScoreboardService
 
             if (config.LevelCoins.TryGetValue(fake, out var fakeLevelCoin))
                 return fakeLevelCoin;
+
+            if (config.CustomTokens != null)
+            {
+                foreach (var kvp in config.CustomTokens)
+                {
+                    if (string.Equals(kvp.Key, fake, StringComparison.OrdinalIgnoreCase) ||
+                        string.Equals(kvp.Value.Name, fake, StringComparison.OrdinalIgnoreCase))
+                    {
+                        return kvp.Value.Id;
+                    }
+                }
+            }
 
             if (int.TryParse(fake, out var directCoinId) && directCoinId > 0)
                 return directCoinId;

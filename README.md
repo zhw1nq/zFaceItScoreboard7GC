@@ -80,6 +80,31 @@ The configuration file is automatically generated from `config.template.jsonc` o
     // Unranked / No Faceit pin ID
     "NullCoinId": 5138,
 
+    // -------------------------------------------------------------
+    // Custom Tokens (Exclusive Badges / Coins)
+    // -------------------------------------------------------------
+    // Define custom token badges with item Id and display Name.
+    // NOTE: Regular players connecting via FaceIT API will NEVER receive these tokens.
+    // They are EXCLUSIVE and can only be assigned via !fake-faceit command or FakeFaceit config below!
+    "CustomTokens": {
+      "lycaon": {
+        "Id": 1016,
+        "Name": "Lycaon PIN"
+      },
+      "ellen": {
+        "Id": 1069,
+        "Name": "Ellen PIN"
+      },
+      "thuys": {
+        "Id": 1083,
+        "Name": "Thuys PIN"
+      },
+      "tnim": {
+        "Id": 1070,
+        "Name": "tniM PIN"
+      }
+    },
+
     // If false (default), level display is permanently enabled and players CANNOT turn it off.
     // If true, players can use !faceit / !fl to toggle display.
     "EnableToggleCommand": false,
@@ -87,11 +112,12 @@ The configuration file is automatically generated from `config.template.jsonc` o
     // Permission required to use !fake-faceit and !unfake-faceit commands
     "FakeFaceitPermission": "admin.faceit.fake.scoreboard",
 
-    // Static fake FaceIT overrides mapped by SteamID64 ("1"-"10", "challenger", "ban", "null")
+    // Static fake FaceIT overrides mapped by SteamID64 ("1"-"10", "challenger", "ban", "null", or custom token key like "lycaon")
     "FakeFaceit": {
-      "76561198000000000": "10",
-      "76561198000000001": "challenger",
-      "76561198000000002": "ban"
+      "76561199801916052": "tnim",
+      "76561199048943334": "ellen",
+      "76561198258827919": "lycaon",
+      "76561199142396693": "thuys"
     },
 
     // Cache expiry in hours
@@ -124,8 +150,8 @@ The configuration file is automatically generated from `config.template.jsonc` o
 
 | Command | Aliases | Syntax | Description | Permission |
 | :--- | :--- | :--- | :--- | :--- |
-| `!fake-faceit` | `!fakefaceit`, `!ffl` | `!fake-faceit <player\|steamid> <1-10\|challenger\|ban\|null>` | Sets a temporary fake FaceIT rank for a player | `admin.faceit.fake.scoreboard` |
-| `!fake-faceit` | `!fakefaceit`, `!ffl` | `!fake-faceit <1-10\|challenger\|ban\|null>` | Sets a temporary fake FaceIT rank for yourself | `admin.faceit.fake.scoreboard` |
+| `!fake-faceit` | `!fakefaceit`, `!ffl` | `!fake-faceit <player\|steamid> <1-10\|challenger\|ban\|null\|<custom_token>>` | Sets a temporary fake FaceIT rank or exclusive custom token | `admin.faceit.fake.scoreboard` |
+| `!fake-faceit` | `!fakefaceit`, `!ffl` | `!fake-faceit <1-10\|challenger\|ban\|null\|<custom_token>>` | Sets a temporary fake FaceIT rank or custom token for yourself | `admin.faceit.fake.scoreboard` |
 | `!fake-faceit` | `!fakefaceit`, `!ffl` | `!fake-faceit <player\|steamid> reset` (or `clear`) | Clears fake override and restores real API stats | `admin.faceit.fake.scoreboard` |
 | `!fake-faceit` | `!fakefaceit`, `!ffl` | `!fake-faceit clear-all` | Clears all active temporary fake overrides on the server | `admin.faceit.fake.scoreboard` |
 | `!unfake-faceit`| `!unfakefaceit`, `!clearfake`, `!unffl` | `!unfake-faceit` | Clears temporary fake for yourself | `admin.faceit.fake.scoreboard` |
@@ -134,6 +160,8 @@ The configuration file is automatically generated from `config.template.jsonc` o
 
 #### Command Examples:
 - `!fake-faceit vhming 10` - Sets Level 10 for player `vhming` immediately.
+- `!fake-faceit vhming lycaon` - Sets exclusive `Lycaon PIN` custom token badge for `vhming`.
+- `!fake-faceit 76561199801916052 ellen` - Sets `Ellen PIN` custom badge for target SteamID.
 - `!fake-faceit 76561199801916052 challenger` - Sets Challenger badge for target SteamID.
 - `!fake-faceit vhming ban` - Sets Banned badge for `vhming`.
 - `!unfake-faceit vhming` - Restores `vhming` back to real API data.

@@ -11,7 +11,7 @@
   "error": "[red]Error fetching FaceIT data.[default]",
   "no_permission": "[red]You do not have permission to use this command.[default]",
   "player_not_found": "[red]Player '{0}' not found.[default]",
-  "fake_usage": "[grey]Usage: !fake-faceit <player|steamid> <1-10|challenger|ban|null|reset>[default]",
+  "fake_usage": "[grey]Usage: !fake-faceit <player|steamid> <1-10|challenger|ban|null|<custom_token>|reset>[default]",
   "fake_success": "Set Fake FaceIT for [gold]{0}[default] to [lime]{1}[default].",
   "fake_reset": "Reset Fake FaceIT for [gold]{0}[default] to real API stats.",
   "fake_cleared_all": "Cleared all temporary Fake FaceIT overrides on the server."

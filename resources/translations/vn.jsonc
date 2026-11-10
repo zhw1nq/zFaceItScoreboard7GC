@@ -11,7 +11,7 @@
   "error": "[red]Lỗi khi tải dữ liệu FaceIT.[default]",
   "no_permission": "[red]Bạn không có quyền sử dụng lệnh này.[default]",
   "player_not_found": "[red]Không tìm thấy người chơi '{0}'.[default]",
-  "fake_usage": "[grey]Cách dùng: !fake-faceit <người chơi|steamid> <1-10|challenger|ban|null|reset>[default]",
+  "fake_usage": "[grey]Cách dùng: !fake-faceit <người chơi|steamid> <1-10|challenger|ban|null|<custom_token>|reset>[default]",
   "fake_success": "Đã đặt Fake FaceIT cho [gold]{0}[default] thành [lime]{1}[default].",
   "fake_reset": "Đã hủy Fake FaceIT cho [gold]{0}[default], khôi phục dữ liệu gốc.",
   "fake_cleared_all": "Đã xóa toàn bộ Fake FaceIT tạm thời trên server."

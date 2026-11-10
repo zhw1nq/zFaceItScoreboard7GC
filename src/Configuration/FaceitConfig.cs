@@ -40,6 +40,15 @@ public sealed class FaceitConfig
     [JsonPropertyName("NullCoinId")]
     public int NullCoinId { get; set; } = 5138;
 
+    [JsonPropertyName("CustomTokens")]
+    public Dictionary<string, CustomTokenConfig> CustomTokens { get; set; } = new(StringComparer.OrdinalIgnoreCase)
+    {
+        ["lycaon"] = new CustomTokenConfig { Id = 1016, Name = "Lycaon PIN" },
+        ["ellen"] = new CustomTokenConfig { Id = 1069, Name = "Ellen PIN" },
+        ["thuys"] = new CustomTokenConfig { Id = 1083, Name = "Thuys PIN" },
+        ["tnim"] = new CustomTokenConfig { Id = 1070, Name = "tniM PIN" }
+    };
+
     [JsonPropertyName("EnableToggleCommand")]
     public bool EnableToggleCommand { get; set; } = false;
 

@@ -145,7 +145,8 @@ public sealed class FaceitCommands
                     else
                     {
                         _scoreboardService.SetRuntimeFake(rawSteamId, statusOrLevel);
-                        ReplyToSender(context, "fake_success", rawSteamId.ToString(), statusOrLevel);
+                        var displayLabel = _scoreboardService.GetFakeDisplayLabel(statusOrLevel);
+                        ReplyToSender(context, "fake_success", rawSteamId.ToString(), displayLabel);
                     }
                     return;
                 }
@@ -166,7 +167,8 @@ public sealed class FaceitCommands
         {
             _scoreboardService.SetRuntimeFake(targetPlayer.SteamID, statusOrLevel);
             _scoreboardService.RefreshPlayer(targetPlayer);
-            ReplyToSender(context, "fake_success", targetPlayer.Name, statusOrLevel);
+            var displayLabel = _scoreboardService.GetFakeDisplayLabel(statusOrLevel);
+            ReplyToSender(context, "fake_success", targetPlayer.Name, displayLabel);
         }
     }
 

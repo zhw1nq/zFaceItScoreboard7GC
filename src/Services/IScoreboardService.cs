@@ -14,4 +14,5 @@ public interface IScoreboardService
     void ClearRuntimeFake(ulong steamId);
     void ClearAllRuntimeFakes();
     string? GetEffectiveFake(ulong steamId);
+    string GetFakeDisplayLabel(string fakeKey);
 }

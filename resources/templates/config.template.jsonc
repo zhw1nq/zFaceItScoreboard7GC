@@ -45,6 +45,31 @@
     "NullCoinId": 5138,
 
     // -------------------------------------------------------------
+    // Custom Tokens (Exclusive Badges / Coins)
+    // -------------------------------------------------------------
+    // Define custom token badges with their item Id and display Name.
+    // NOTE: Regular players connecting via FaceIT API will NEVER receive these tokens.
+    // They are EXCLUSIVE and can only be assigned via !fake-faceit command or FakeFaceit config below!
+    "CustomTokens": {
+      "lycaon": {
+        "Id": 1016,
+        "Name": "Lycaon PIN"
+      },
+      "ellen": {
+        "Id": 1069,
+        "Name": "Ellen PIN"
+      },
+      "thuys": {
+        "Id": 1083,
+        "Name": "Thuys PIN"
+      },
+      "tnim": {
+        "Id": 1070,
+        "Name": "tniM PIN"
+      }
+    },
+
+    // -------------------------------------------------------------
     // Player Options & Commands
     // -------------------------------------------------------------
     // If false (default), FaceIT level display is permanently enabled and players CANNOT turn it off.
@@ -58,11 +83,12 @@
     "FakeFaceitPermission": "admin.faceit.fake.scoreboard",
 
     // Static fake FaceIT overrides mapped by SteamID64
-    // Values can be: "1" to "10", "challenger", "ban", "null"
+    // Values can be: "1" to "10", "challenger", "ban", "null", or any custom token key (e.g. "lycaon", "ellen")
     "FakeFaceit": {
-      "76561198000000000": "10",
-      "76561198000000001": "challenger",
-      "76561198000000002": "ban"
+      "76561199801916052": "tnim",
+      "76561199048943334": "ellen",
+      "76561198258827919": "lycaon",
+      "76561199142396693": "thuys"
     },
 
     // -------------------------------------------------------------
