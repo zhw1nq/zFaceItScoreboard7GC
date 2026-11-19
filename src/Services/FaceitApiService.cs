@@ -176,6 +176,9 @@ public sealed class FaceitApiService : IFaceitApiService
             {
                 record.HasFaceitAccount = false;
                 record.FaceitLevel = 0;
+                record.FaceitElo = 0;
+                record.IsBanned = false;
+                record.IsChallenger = false;
                 record.LastFetch = DateTime.UtcNow;
                 return true;
             }
@@ -195,17 +198,40 @@ public sealed class FaceitApiService : IFaceitApiService
             }
 
             record.Nickname = apiResult.Nickname;
+            var playerId = apiResult.PlayerId;
 
             if (apiResult.Games != null && apiResult.Games.TryGetValue("cs2", out var gameData))
             {
                 record.HasFaceitAccount = true;
                 record.FaceitLevel = gameData.SkillLevel;
                 record.FaceitElo = gameData.FaceitElo;
+
+                // Concurrent queries for Bans and Challenger (if Level 10) to minimize network latency
+                if (!string.IsNullOrWhiteSpace(playerId))
+                {
+                    var banTask = CheckOfficialFaceitBannedAsync(playerId, apiKey, ct);
+                    var challengerTask = (gameData.SkillLevel >= 10 && !string.IsNullOrWhiteSpace(gameData.Region))
+                        ? CheckOfficialFaceitChallengerAsync(playerId, gameData.Region, apiKey, ct)
+                        : Task.FromResult(false);
+
+                    await Task.WhenAll(banTask, challengerTask).ConfigureAwait(false);
+
+                    record.IsBanned = await banTask;
+                    record.IsChallenger = !record.IsBanned && await challengerTask;
+                }
+                else
+                {
+                    record.IsBanned = false;
+                    record.IsChallenger = false;
+                }
             }
             else
             {
                 record.HasFaceitAccount = false;
                 record.FaceitLevel = 0;
+                record.FaceitElo = 0;
+                record.IsBanned = false;
+                record.IsChallenger = false;
             }
 
             record.LastFetch = DateTime.UtcNow;
@@ -214,6 +240,73 @@ public sealed class FaceitApiService : IFaceitApiService
         catch (Exception ex) when (ex is not OperationCanceledException)
         {
             _logger.LogWarning("[FaceIT] Official API request failed for SteamID {SteamId}: {Message}", steamId, ex.Message);
+            return false;
+        }
+    }
+
+    private async Task<bool> CheckOfficialFaceitBannedAsync(string playerId, string apiKey, CancellationToken ct)
+    {
+        try
+        {
+            var bansUrl = $"https://open.faceit.com/data/v4/players/{playerId}/bans?offset=0&limit=10";
+            using var request = new HttpRequestMessage(HttpMethod.Get, bansUrl);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            var contentStream = await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false);
+            var bansData = await JsonSerializer.DeserializeAsync<OfficialFaceitBansResponse>(contentStream, JsonOptions, ct).ConfigureAwait(false);
+
+            if (bansData?.Items == null || bansData.Items.Count == 0)
+            {
+                return false;
+            }
+
+            foreach (var ban in bansData.Items)
+            {
+                if (ban.IsActive())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _logger.LogDebug(ex, "[FaceIT] Failed to query bans for FaceIT player {PlayerId}", playerId);
+            return false;
+        }
+    }
+
+    private async Task<bool> CheckOfficialFaceitChallengerAsync(string playerId, string region, string apiKey, CancellationToken ct)
+    {
+        try
+        {
+            var rankingUrl = $"https://open.faceit.com/data/v4/rankings/games/cs2/regions/{region}/players/{playerId}";
+            using var request = new HttpRequestMessage(HttpMethod.Get, rankingUrl);
+            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", apiKey);
+            request.Headers.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            using var response = await _httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, ct).ConfigureAwait(false);
+            if (!response.IsSuccessStatusCode)
+            {
+                return false;
+            }
+
+            var contentStream = await response.Content.ReadAsStreamAsync(ct).ConfigureAwait(false);
+            var rankingData = await JsonSerializer.DeserializeAsync<OfficialFaceitRankingResponse>(contentStream, JsonOptions, ct).ConfigureAwait(false);
+
+            return rankingData != null && rankingData.Position > 0 && rankingData.Position <= 1000;
+        }
+        catch (Exception ex) when (ex is not OperationCanceledException)
+        {
+            _logger.LogDebug(ex, "[FaceIT] Failed to query regional rankings for FaceIT player {PlayerId} in region {Region}", playerId, region);
             return false;
         }
     }

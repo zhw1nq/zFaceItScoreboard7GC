@@ -19,6 +19,7 @@ publish/
 ## Runtime data and cache
 faceit_cache.json
 faceit_cache.json.tmp
+faceit_api_key.txt
 *.tmp
 *.cache
 *.log
